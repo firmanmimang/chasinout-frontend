@@ -36,6 +36,7 @@
 <script>
 import { computed, ref } from 'vue'
 import store from '@/store'
+import router from '@/router'
 
 export default {
     setup() {
@@ -46,7 +47,8 @@ export default {
         const user = computed(()=> store.getters['auth/user'] )
 
         const logout = async () => {
-            store.dispatch('auth/logout')
+            await store.dispatch('auth/logout')
+            router.replace('/login')
         }
  
         return {
